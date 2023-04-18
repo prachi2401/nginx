@@ -33,8 +33,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }} .
 
-      - name: Tag Docker image
-        run: docker tag ${{ env.IMAGE_NAME }} ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
       - name: Push Docker image
-        run: docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
